@@ -1,0 +1,59 @@
+﻿@model List<Movimiento>
+@{
+    ViewData["Title"] = "Movimientos";
+    int ingresos = Model.Where(m => m.Tipo == TipoMovimiento.Ingreso).Sum(m => m.Monto);
+    int egresos = Model.Where(m => m.Tipo == TipoMovimiento.Egreso).Sum(m => m.Monto);
+}
+
+<div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+    <h1 class="text-3xl font-bold text-slate-900">Movimientos</h1>
+    <a asp-action="Create" class="inline-flex items-center rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition">
+        + Nuevo movimiento
+    </a>
+</div>
+
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-3 mb-8">
+    <div class="rounded-2xl bg-white p-6 shadow-sm border border-emerald-100">
+        <p class="text-sm font-medium text-slate-500">Ingresos</p>
+        <p class="mt-2 text-2xl font-bold text-emerald-600">@ingresos.ToString("N0") Gs</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm border border-red-100">
+        <p class="text-sm font-medium text-slate-500">Egresos</p>
+        <p class="mt-2 text-2xl font-bold text-red-600">@egresos.ToString("N0") Gs</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
+        <p class="text-sm font-medium text-slate-500">Saldo</p>
+        <p class="mt-2 text-2xl font-bold text-slate-900">@((ingresos - egresos).ToString("N0")) Gs</p>
+    </div>
+</div>
+
+<div class="overflow-x-auto rounded-2xl bg-white shadow-sm border border-slate-200">
+    <table class="w-full text-left text-sm">
+        <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+            <tr>
+                <th class="px-6 py-4 font-semibold">Id</th>
+                <th class="px-6 py-4 font-semibold">Tipo</th>
+                <th class="px-6 py-4 font-semibold">Descripción</th>
+                <th class="px-6 py-4 font-semibold text-right">Monto</th>
+                <th class="px-6 py-4"></th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+            @foreach (Movimiento m in Model)
+            {
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="px-6 py-4 text-slate-500">@m.Id</td>
+                    <td class="px-6 py-4">
+                        <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold @(m.Tipo == TipoMovimiento.Ingreso ? "bg-emerald-100 text-emerald-700" : "bg-red-100 text-red-700")">@m.Tipo</span>
+                    </td>
+                    <td class="px-6 py-4 text-slate-800">@m.Descripcion</td>
+                    <td class="px-6 py-4 text-right font-semibold @(m.Tipo == TipoMovimiento.Ingreso ? "text-emerald-600" : "text-red-600")">@m.Monto.ToString("N0") Gs</td>
+                    <td class="px-6 py-4 text-right whitespace-nowrap">
+                        <a class="rounded-lg px-3 py-2 font-medium text-slate-600 hover:bg-slate-100" asp-action="Edit" asp-route-id="@m.Id">Editar</a>
+                        <a class="rounded-lg px-3 py-2 font-medium text-red-600 hover:bg-red-50" asp-action="Delete" asp-route-id="@m.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,2 +1,0 @@
-# csharp
-Prácticas de C#

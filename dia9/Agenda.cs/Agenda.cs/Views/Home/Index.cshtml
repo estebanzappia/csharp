@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Panel Principal";
+}
+
+<div class="container py-4">
+    <!-- Encabezado del CRM -->
+    <div class="p-4 mb-4 bg-light rounded-3 shadow-sm border">
+        <h1 class="display-6 fw-bold text-dark">Sistema de Gestión CRM</h1>
+        <p class="col-md-8 fs-6 text-muted mb-0">
+            Bienvenido al panel central. Desde aquí puedes acceder a la administración de clientes y consultar el estado del sistema.
+        </p>
+    </div>
+
+    <!-- Menú de accesos rápidos -->
+    <div class="row g-4">
+        <!-- Tarjeta de Clientes -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 border-start border-4 border-primary">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-primary">Gestión de Clientes</h5>
+                    <p class="card-text text-muted small flex-grow-1">
+                        Accede al listado de clientes, consulta sus datos de contacto y administra la agenda.
+                    </p>
+                    <a asp-controller="Clientes" asp-action="Index" class="btn btn-primary btn-sm rounded-2 fw-semibold align-self-start mt-2">
+                        Ver Clientes &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta Estado del Sistema -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 border-start border-4 border-success">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-success">Estado del Sistema</h5>
+                    <p class="card-text text-muted small">
+                        Base de datos configurada y lista para consultas.
+                    </p>
+                    <div class="d-flex align-items-center mt-3">
+                        <span class="badge bg-success me-2">Activo</span>
+                        <small class="text-muted">Servidor MySQL (Agenda)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta Documentación / Información -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 border-start border-4 border-info">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-info">Información</h5>
+                    <p class="card-text text-muted small flex-grow-1">
+                        Consulta las políticas del sistema y detalles de la aplicación.
+                    </p>
+                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-outline-info btn-sm rounded-2 fw-semibold align-self-start mt-2">
+                        Ver Privacidad &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

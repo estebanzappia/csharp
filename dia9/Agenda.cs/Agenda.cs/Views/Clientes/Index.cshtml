@@ -1,0 +1,36 @@
+﻿@using Agenda.Models 
+@model List<Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1>Clientes</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Ciudad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Cliente c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Nombre</td>
+                <td>@c.Telefono</td>
+                <td>@c.Ciudad</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Total de clientes: <strong>@Model.Count</strong></p>
