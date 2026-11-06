@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RLHeNQ78sZw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ALUMNO\\Documents\\Esteban Zappia\\Curso C# 2026\\dia14\\Canchas\\Canchas\\EvaluacionJuego.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ALUMNO\\.nuget\\packages\\mysqlconnector\\2.6.2\\mysqlconnector.2.6.2.nupkg.sha512"
+  ],
+  "logs": []
+}

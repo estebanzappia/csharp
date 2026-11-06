@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Resultado de la Partida";
+    int estado = ViewBag.Estado; // 1: Ganó, 2: Perdió
+}
+
+<div class="container mt-5 text-center">
+    <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+        @if (estado == 1)
+        {
+            <h2 class="text-success mb-3">🎉 ¡Felicitaciones, @ViewBag.Jugador!</h2>
+            <p class="lead">Adivinaste el número secreto <strong>@ViewBag.NumeroSecreto</strong> en <strong>@ViewBag.Intentos</strong> intentos.</p>
+            <div class="alert alert-success fs-4">
+                Puntaje obtenido: <strong>@ViewBag.Puntos pts</strong>
+            </div>
+        }
+        else
+        {
+            <h2 class="text-danger mb-3">❌ ¡Game Over, @ViewBag.Jugador!</h2>
+            <p class="lead">Te quedaste sin intentos. El número secreto era <strong>@ViewBag.NumeroSecreto</strong>.</p>
+            <div class="alert alert-secondary">
+                Mejor suerte para la próxima. ¡Sigue intentando!
+            </div>
+        }
+
+        <div class="d-grid gap-2 mt-3">
+            <a asp-action="Index" class="btn btn-primary">Jugar de Nuevo</a>
+            <a asp-action="Ranking" class="btn btn-outline-secondary">Ver Ranking (Top 10)</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Canchas.Models.Puntaje>
+
+@{
+    ViewData["Title"] = "Ranking Global";
+    int puesto = 1;
+}
+
+<div class="container mt-5">
+    <div class="card shadow p-4 mx-auto" style="max-width: 700px;">
+        <h2 class="text-center mb-4">🏆 Ranking Top 10 - Adivina el Número</h2>
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="alert alert-info text-center">Aún no hay puntajes registrados. ¡Sé el primero en jugar!</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped table-hover text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Jugador</th>
+                            <th>Puntos</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@puesto</th>
+                                <td>@item.Jugador</td>
+                                <td><span class="badge bg-success fs-6">@item.Puntos pts</span></td>
+                                <td>@item.Creado.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                            puesto++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        <div class="text-center mt-3">
+            <a asp-action="Index" class="btn btn-primary">Volver al Inicio</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Tablero de Juego";
+    int intentosRestantes = 7 - (int)(ViewBag.Intentos ?? 0);
+}
+
+<div class="container mt-5 text-center">
+    <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+        <h3 class="mb-3">🎯 Turno de @ViewBag.Jugador</h3>
+        <p class="text-muted">Intento: <strong>@(ViewBag.Intentos)</strong> de 7 (Te quedan @intentosRestantes)</p>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        @if (ViewBag.Pista != null)
+        {
+            <div class="alert alert-warning">@ViewBag.Pista</div>
+        }
+
+        <form asp-action="Adivinar" method="post">
+            <div class="mb-3">
+                <label for="numero" class="form-label">Ingresa un número (1 al 100):</label>
+                <input type="number" class="form-control text-center fs-4" id="numero" name="numero" min="1" max="100" required autofocus>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Probar Suerte</button>
+        </form>
+    </div>
+</div>
